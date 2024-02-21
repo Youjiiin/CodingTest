@@ -1,12 +1,12 @@
 n = int(input())
-count = [0] * 1000001
+dp = [0] * 1000001
 
 for i in range(2, n + 1):
-    count[i] = count[i - 1] + 1
+    dp[i] = dp[i - 1] + 1
 
     if i % 2 == 0:
-        count[i] = min(count[i], count[i//2] + 1)
+        dp[i] = min(dp[i], 1 + dp[i//2])
     if i % 3 == 0:
-        count[i] = min(count[i], count[i//3] + 1)
+        dp[i] = min(dp[i], 1 + dp[i//3])
 
-print(count[n])
+print(dp[n])
