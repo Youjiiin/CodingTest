@@ -10,14 +10,11 @@ def solution(n, lost, reserve):
             lost.remove(i)
 
     # 옆 사람이 여벌있는지 확인
-    #for i in lost:
-    #    if i - 1 in reserve or i + 1 in reserve:
-    #        lost.remove(i)
-            
     for i in reserve:
         if i-1 in lost:
             lost.remove(i-1)
         elif i+1 in lost:
             lost.remove(i+1)
+
 
     return n - len(lost)
