@@ -1,13 +1,17 @@
 n = int(input())
-step = [0] * 301
-for i in range(1, n + 1):
-    step[i] = int(input())
-dp = [0] * 301
-dp[1] = step[1]
-dp[2] = step[1] + step[2]
-dp[3] = max(step[1] + step[3], step[2] + step[3])
+stairs = [0] + [int(input()) for _ in range(n)]
 
-for i in range(4, n + 1):
-    dp[i] = max(dp[i - 3] + step[i - 1] + step[i], dp[i - 2] + step[i])
+if n == 1:
+    print(stairs[1])
+elif n == 2:
+    print(stairs[1] + stairs[2])
+else:
+    score = [0] * (n + 1)
+    score[1] = stairs[1]
+    score[2] = stairs[1] + stairs[2]
+    score[3] = max(stairs[1] + stairs[3], stairs[2] + stairs[3])
 
-print(dp[n])
+    for i in range(4, n + 1):
+        score[i] = max(stairs[i] + stairs[i - 1] + score[i - 3], stairs[i] + score[i - 2])
+
+    print(score[n])
